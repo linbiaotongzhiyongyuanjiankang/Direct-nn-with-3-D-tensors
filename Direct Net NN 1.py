@@ -8,11 +8,11 @@ sample_pos = 3
 sample_prope = 3
 goal_batch = 2
 dorate = 0.000025
-m = nn.Sigmoid()
+sig = nn.Sigmoid()
 
 s = torch.randn(sample_batch, sample_pos, sample_prope)     # 超越2维的矩阵会以后两个维合成一个（类二维）元组，之前的所有维度为Batch维度
 y = torch.randn(sample_batch, sample_pos, goal_batch)
-y_s = m(y)
+y_s = sig(y)
 
 hid1 = 16
 w1 = torch.randn(sample_batch, sample_pos, hid1)
@@ -40,7 +40,7 @@ for epoch in range(0, epoch_max):
     h4 = h3.bmm(w4)
     Y = h4.clamp(min=0)
 
-    Y_s = m(Y)
+    Y_s = sig(Y)
 
     Y_loss = (Y_s - y_s).pow(2).sum()
     Y_loss = np.around(Y_loss, decimals=6)
