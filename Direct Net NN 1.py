@@ -1,5 +1,4 @@
 import torch
-import matplotlib.pyplot as plt
 import numpy as np
 import torch.nn as nn
 
@@ -46,8 +45,6 @@ for epoch in range(0, epoch_max):
     Y_loss = (Y_s - y_s).pow(2).sum()
     Y_loss = np.around(Y_loss, decimals=6)
     print("Eopch:{}, Y_Loss:{:.6f}".format(epoch + 1, Y_loss))
-    plt.ioff()
-    plt.show()
 
     grad_Y = 2 * (Y - y)
 
